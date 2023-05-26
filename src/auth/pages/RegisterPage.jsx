@@ -1,7 +1,13 @@
 import { Google } from "@mui/icons-material"
 import { Button, Divider, Grid, TextField, Typography } from "@mui/material"
+import { startGoogleSignIn } from "../../store/auth/thunks"
+import { useDispatch } from "react-redux"
 
 export const RegisterPage = () => {
+	const dispatch = useDispatch()
+	const signInGoogle = () => {
+		dispatch(startGoogleSignIn())
+	}
 	return (
 		<Grid container>
 			<form>
@@ -31,6 +37,7 @@ export const RegisterPage = () => {
 						<Divider sx={{ width: '100%' }}>O</Divider>
 						<Grid item xs={12}>
 							<Button
+								onClick={signInGoogle}
 								color='error'
 								variant='contained'
 								fullWidth
