@@ -1,5 +1,5 @@
-import { MoreVert } from "@mui/icons-material"
-import { Card, CardContent, CardHeader, IconButton, Typography } from "@mui/material"
+import { FavoriteOutlined, Report } from "@mui/icons-material"
+import { Card, CardActions, CardContent, CardHeader, IconButton, Tooltip, Typography } from "@mui/material"
 
 export const FeedCard = () => {
   return (
@@ -9,9 +9,11 @@ export const FeedCard = () => {
 			title={'Palomino Fernandez Jeremy'}
 			subheader={'September 14, 2023'}
 			action={
-				<IconButton aria-label="settings">
-					<MoreVert  />
-				</IconButton>
+				<Tooltip title={'Reportar'}>
+					<IconButton aria-label="report">
+						<Report  />
+					</IconButton>
+				</Tooltip>
 			}
 		/>
 		<CardContent>
@@ -19,9 +21,17 @@ export const FeedCard = () => {
 				Lorem ipsum dolor sit amet.
 			</Typography>
 			<Typography variant="body2" >
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum accusamus blanditiis consequatur reiciendis quas distinctio cupiditate. Ipsum odio non libero! Assumenda qui esse mollitia earum dolor consequatur sed eius asperiores in. Earum non distinctio quibusdam facilis rem necessitatibus dignissimos amet?
+				Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum accusamus blanditiis consequatur reiciendis quas distinctio cupiditate. 
 			</Typography>
 		</CardContent>
+		<CardActions>
+			<Tooltip title={'Like'}>
+				<IconButton>
+					<FavoriteOutlined />
+				</IconButton>
+			</Tooltip>
+				<Typography variant="body2">13 Likes</Typography>
+		</CardActions>
 	</Card>
   )
 }
