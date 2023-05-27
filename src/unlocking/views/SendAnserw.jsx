@@ -3,7 +3,7 @@ import { Button, Card, CardActions, CardContent, CardHeader, TextField, Typograp
 
 export const SendAnserw = () => {
 	return (
-		<Card sx={{ position: 'sticky', top: '16px' }} >
+		<Card sx={{ position: 'sticky', top: '76px' }} >
 			<CardHeader title={'Pregunta del Dia:'} />
 			<CardContent component='form'>
 				<Typography variant="h6" component='p' >

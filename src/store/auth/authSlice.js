@@ -31,7 +31,7 @@ export const authSlice = createSlice({
 			state.displayName = null
 			state.photoURL = null
 			state.email = null
-			state.errorMessage = payload.errorMessage
+			state.errorMessage = payload?.errorMessage
 		}
 	},
 });

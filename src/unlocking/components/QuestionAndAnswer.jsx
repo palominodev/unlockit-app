@@ -2,7 +2,7 @@ import { Card, CardContent, Typography } from "@mui/material"
 
 export const QuestionAndAnswer = () => {
   return (
-	<Card sx={{position:'sticky', top: '8px',padding: 2}}>
+	<Card sx={{position:'sticky', top: '72px',padding: 2}}>
 		<CardContent>
 			<Typography 
 				variant="h4" 
