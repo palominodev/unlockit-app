@@ -32,7 +32,7 @@ export const NavBar = () => {
 					<Box sx={{ flexGrow: 0 }}>
 						<Tooltip title="Open settings">
 							<IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-								<Avatar alt="Remy Sharp" src={photoURL || defaultURL} />
+								<Avatar alt={displayName} src={photoURL || defaultURL} />
 							</IconButton>
 						</Tooltip>
 						<Menu
