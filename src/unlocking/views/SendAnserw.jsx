@@ -4,7 +4,7 @@ import { useForm } from "../../hooks/useForm"
 import { useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
-import { startSetQuestion } from "../../store/unlocking/thunks"
+import { startSendAnwser, startSetQuestion } from "../../store/unlocking/thunks"
 
 export const SendAnserw = () => {
 	const navigate = useNavigate()
@@ -14,13 +14,13 @@ export const SendAnserw = () => {
 		answerText: ''
 	})
 
-	const onSendAnwser = () => {
-		// dispatch(startSendAnwser(answerText))
-		// navigate('/comment')
+	const onSendAnwser = async() => {
+		dispatch(startSendAnwser({answerText}))
+		navigate('/comment')
 	}
 
 	useEffect(() => {
-		dispatch(startSetQuestion())
+		dispatch(startSetQuestion({answerText}))
 	}, [])
 
 	

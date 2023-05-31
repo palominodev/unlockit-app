@@ -16,7 +16,6 @@ export const unlockingSlice = createSlice({
 
 		},
 		setQuestion: (state, { payload }) => {
-			console.log(payload)
 			state.question = payload
 		}
 	},
