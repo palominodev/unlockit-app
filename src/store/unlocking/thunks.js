@@ -1,7 +1,7 @@
 import { checkingSendAnswer } from "../../utils/checkingSendAnswer"
 import { getQuestion } from "../../utils/getQuestion"
 import { setAnswer } from "../../utils/setAnswer"
-import { setQuestion } from "./unlockingSlice"
+import { setQuestion, setStatus } from "./unlockingSlice"
 
 export const startSendAnwser = ({answerText}) => {
 	return async (dispatch,getState) => {
@@ -31,10 +31,12 @@ export const startCheckingSend = () => {
 	return async(dispatch, getState) => {
 		const { uid } = getState().auth
 		const { question } = getState().unlocking
-		console.log(question)
-		// await checkingSendAnswer({
-		// 	id: question.id,
-		// 	uid
-		// })
+		if(!question) return
+		const isSend = await checkingSendAnswer({
+			id: question.id,
+			uid
+		})
+		dispatch(setStatus({isSend}))
+		// console.log(a);
 	}
 }

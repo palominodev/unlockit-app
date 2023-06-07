@@ -5,7 +5,7 @@ export const unlockingSlice = createSlice({
 	name: 'unlocking',
 
 	initialState: {
-		status: UNLOCKING_STATUS.NOT_SEND,
+		status: UNLOCKING_STATUS.LOADING,
 		question: null,
 		answer: null,
 		allAnswer: []
@@ -17,9 +17,17 @@ export const unlockingSlice = createSlice({
 		},
 		setQuestion: (state, { payload }) => {
 			state.question = payload
+		},
+		setStatus: (state, {payload}) => {
+			console.log(payload);
+			if(payload.isSend) {
+				state.status = UNLOCKING_STATUS.SEND
+			}else {
+				state.status = UNLOCKING_STATUS.NOT_SEND
+			}
 		}
 	},
 });
 
 
-export const { setAnswer, setQuestion } = unlockingSlice.actions;
+export const { setAnswer,setStatus, setQuestion } = unlockingSlice.actions;

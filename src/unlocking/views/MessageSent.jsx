@@ -1,7 +1,11 @@
 import { MessageOutlined } from "@mui/icons-material"
 import { Button, Card, CardContent, Grid, Typography } from "@mui/material"
+import { useNavigate } from "react-router-dom"
 
 export const MessageSent = () => {
+
+	const navigate = useNavigate()
+
   return (
 		<Card sx={{position: 'sticky', top: '16px'}} >
 			<CardContent>
@@ -11,11 +15,14 @@ export const MessageSent = () => {
 					</Grid>
 					<Grid item xs={12}>
 						<Typography textAlign={'center'} variant="h6" component='p' >
-							El mensaje ya fue enviado
+							Tu respuesta ya fue enviada
 						</Typography>
 					</Grid>
 					<Grid item container justifyContent={'center'} xs={12} >
-						<Button sx={{marginTop:2}} variant="contained" >
+						<Button 
+							onClick={() => navigate('/comment')}
+							sx={{marginTop:2}} 
+							variant="contained" >
 							Ver
 						</Button>
 					</Grid>
