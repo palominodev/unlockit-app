@@ -8,7 +8,7 @@ export const unlockingSlice = createSlice({
 		status: UNLOCKING_STATUS.LOADING,
 		question: null,
 		answer: null,
-		allAnswer: []
+		allAnswers: []
 	},
 
 	reducers: {
@@ -25,9 +25,12 @@ export const unlockingSlice = createSlice({
 			}else {
 				state.status = UNLOCKING_STATUS.NOT_SEND
 			}
-		}
+		},
+		setAllAnswers: (state, {payload}) => {
+			state.allAnswers = payload.allAnswers;
+		},
 	},
 });
 
 
-export const { setStateAnswer,setStatus, setQuestion } = unlockingSlice.actions;
+export const { setStateAnswer,setStatus, setAllAnswers, setQuestion } = unlockingSlice.actions;

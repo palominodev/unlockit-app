@@ -1,8 +1,9 @@
 import { checkingSendAnswer } from "../../utils/checkingSendAnswer"
+import { getAllAnswer } from "../../utils/getAllAnswer"
 import { getAnswer } from "../../utils/getAnswer"
 import { getQuestion } from "../../utils/getQuestion"
 import { setAnswer } from "../../utils/setAnswer"
-import { setQuestion, setStateAnswer, setStatus } from "./unlockingSlice"
+import { setAllAnswers, setQuestion, setStateAnswer, setStatus } from "./unlockingSlice"
 
 export const startSendAnwser = ({answerText}) => {
 	return async (dispatch,getState) => {
@@ -49,5 +50,15 @@ export const startGetAnswer = () => {
 		if(!question) return
 		const answer = await getAnswer({uid, id: question.id})
 		dispatch(setStateAnswer({answer}))
+	}
+}
+
+export const startGetAllAnswers = () => {
+	return async(dispatch,getState) => {
+		const { question } = getState().unlocking
+		console.log(question)
+		if(!question) return 
+		const allAnswers = await getAllAnswer(question.id)
+		dispatch(setAllAnswers({allAnswers}))
 	}
 }
