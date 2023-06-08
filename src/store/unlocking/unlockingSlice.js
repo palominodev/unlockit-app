@@ -12,8 +12,8 @@ export const unlockingSlice = createSlice({
 	},
 
 	reducers: {
-		setAnswer: () => {
-
+		setStateAnswer: (state, {payload}) => {
+			state.answer = payload.answer
 		},
 		setQuestion: (state, { payload }) => {
 			state.question = payload
@@ -30,4 +30,4 @@ export const unlockingSlice = createSlice({
 });
 
 
-export const { setAnswer,setStatus, setQuestion } = unlockingSlice.actions;
+export const { setStateAnswer,setStatus, setQuestion } = unlockingSlice.actions;
