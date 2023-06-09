@@ -1,5 +1,5 @@
 import { FavoriteOutlined, Report } from "@mui/icons-material"
-import { Card, CardActions, CardContent, CardHeader, IconButton, Tooltip, Typography } from "@mui/material"
+import { Avatar, Card, CardActions, CardContent, CardHeader, Grid, IconButton, Tooltip, Typography } from "@mui/material"
 
 export const FeedCard = ({displayName,answer,photoURL}) => {
   return (
@@ -22,12 +22,21 @@ export const FeedCard = ({displayName,answer,photoURL}) => {
 			</Typography>
 		</CardContent>
 		<CardActions>
-			<Tooltip title={'Like'}>
+			<Grid
+				justifyContent={'space-between'} 
+				container>
+				<Grid item>
+				<Tooltip title={'Like'}>
 				<IconButton>
 					<FavoriteOutlined />
-				</IconButton>
-			</Tooltip>
-				<Typography variant="body2">13 Likes</Typography>
+					</IconButton>
+				</Tooltip>
+					<Typography variant="body2">13 Likes</Typography>
+				</Grid>
+				<Grid item>
+					<Avatar alt={displayName} src={photoURL} />
+				</Grid>
+			</Grid>
 		</CardActions>
 	</Card>
   )
