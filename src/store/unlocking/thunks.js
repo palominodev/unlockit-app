@@ -39,7 +39,6 @@ export const startCheckingSend = () => {
 			uid
 		})
 		dispatch(setStatus({isSend}))
-		// console.log(a);
 	}
 }
 
@@ -56,7 +55,6 @@ export const startGetAnswer = () => {
 export const startGetAllAnswers = () => {
 	return async(dispatch,getState) => {
 		const { question } = getState().unlocking
-		console.log(question)
 		if(!question) return 
 		const allAnswers = await getAllAnswer(question.id)
 		dispatch(setAllAnswers({allAnswers}))

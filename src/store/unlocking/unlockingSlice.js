@@ -19,7 +19,6 @@ export const unlockingSlice = createSlice({
 			state.question = payload
 		},
 		setStatus: (state, {payload}) => {
-			console.log(payload);
 			if(payload.isSend) {
 				state.status = UNLOCKING_STATUS.SEND
 			}else {
