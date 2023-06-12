@@ -5,7 +5,7 @@ import { getQuestion } from "../../utils/getQuestion"
 import { sendingLike } from "../../utils/sendingLike"
 import { sendingDisliked } from "../../utils/sendingDisliked"
 import { setAnswer } from "../../utils/setAnswer"
-import { setAllAnswers, setQuestion, setStateAnswer, setStatus } from "./unlockingSlice"
+import { setAllAnswers, setLikeLoading, setLikeReady, setQuestion, setStateAnswer, setStatus } from "./unlockingSlice"
 import { isLikedCard } from "../../utils/isLikedCard"
 
 export const startSendAnwser = ({answerText}) => {
@@ -66,17 +66,21 @@ export const startGetAllAnswers = () => {
 
 export const startSendLike = ({uid:commentId}) => {
 	return async (dispatch,getState) => {
+		dispatch(setLikeLoading())
 		const {question} = getState().unlocking
 		const {uid} = getState().auth
 		await sendingLike({id:question.id, uid,commentId})
+		dispatch(setLikeReady())
 	}
 }
 
 export const startSendDisliked = ({uid:commentId}) => {
 	return async (dispatch,getState) => {
+		dispatch(setLikeLoading())
 		const {question} = getState().unlocking
 		const {uid} = getState().auth
 		await sendingDisliked({id:question.id, uid,commentId})
+		dispatch(setLikeReady())
 	}
 }
 
