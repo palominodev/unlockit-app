@@ -6,6 +6,7 @@ import { sendingLike } from "../../utils/sendingLike"
 import { sendingDisliked } from "../../utils/sendingDisliked"
 import { setAnswer } from "../../utils/setAnswer"
 import { setAllAnswers, setQuestion, setStateAnswer, setStatus } from "./unlockingSlice"
+import { isLikedCard } from "../../utils/isLikedCard"
 
 export const startSendAnwser = ({answerText}) => {
 	return async (dispatch,getState) => {
@@ -63,19 +64,26 @@ export const startGetAllAnswers = () => {
 	}
 }
 
-export const startSendLike = ({uid,likes}) => {
+export const startSendLike = ({uid:commentId}) => {
 	return async (dispatch,getState) => {
 		const {question} = getState().unlocking
-		console.log(question.id)
-
-		await sendingLike({id:question.id, uid,likes})
+		const {uid} = getState().auth
+		await sendingLike({id:question.id, uid,commentId})
 	}
 }
 
-export const startSendDisliked = ({uid, likes}) => {
+export const startSendDisliked = ({uid:commentId}) => {
 	return async (dispatch,getState) => {
 		const {question} = getState().unlocking
-		console.log(question.id)
-		await sendingDisliked({id:question.id, uid,likes})
+		const {uid} = getState().auth
+		await sendingDisliked({id:question.id, uid,commentId})
+	}
+}
+
+export const startIsLikedCard = ({id,uid:commentId},setIsLiked) => {
+	return async(dispatch,getState) => {
+		const {uid} = getState().auth
+		const isLiked = await isLikedCard({uid,id,commentId})
+		setIsLiked(isLiked)
 	}
 }

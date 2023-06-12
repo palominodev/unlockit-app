@@ -1,25 +1,33 @@
 import { Favorite, FavoriteBorderOutlined, Report } from "@mui/icons-material"
 import { Avatar, Card, CardActions, CardContent, CardHeader, Grid, IconButton, Tooltip, Typography } from "@mui/material"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
-import { startSendDisliked, startSendLike } from "../../store/unlocking/thunks"
+import { startIsLikedCard, startSendDisliked, startSendLike } from "../../store/unlocking/thunks"
 
-export const FeedCard = ({displayName,answer,photoURL, timestamp, likes,uid}) => {
+export const FeedCard = ({displayName,answer,photoURL, timestamp, likes,id,uid}) => {
 	const time = new Date(timestamp)
 	const date = time.toString().split(' ').slice(0,5).join(' ')
 	const dispatch = useDispatch()
 
-	const [like, setLike] = useState(likes)
+	const [like, setLike] = useState(likes.length)
 	const [isLiked, setIsLiked] = useState(false)
+
+
+	useEffect(() => {
+		dispatch(startIsLikedCard({id,uid},setIsLiked))
+	}, [])
+	
+
 
 	const onSendLike = () => {
 		setIsLiked(!isLiked)
 		if (isLiked) {
 			setLike(like - 1)
-			dispatch(startSendDisliked({uid,likes}))
-		} else {
+			dispatch(startSendDisliked())
+		} 
+		else {
 			setLike(like + 1)
-			dispatch(startSendLike({uid,likes}))
+			dispatch(startSendLike({uid}))
 		}
 	}
   return (
