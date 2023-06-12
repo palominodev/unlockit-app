@@ -5,7 +5,6 @@ export const getQuestion = async() => {
 	const questions = query(collection(FirebaseDB, 'questions'), orderBy('fecha', 'asc'))
 
 	const queryDocs = await getDocs(questions)
-	console.log(queryDocs._docs.at(0).data())
 
 	return {
 		question: queryDocs._docs.at(-1).data().texto,

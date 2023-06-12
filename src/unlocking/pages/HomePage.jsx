@@ -20,8 +20,6 @@ export const HomePage = () => {
 
 	useEffect(() => {
 		dispatch(startSetQuestion())
-		const a = (status === UNLOCKING_STATUS.SEND) ? 'MessageSent' : 'SendAnswer'
-		console.log(a);
 	}, [])
 
 	return (

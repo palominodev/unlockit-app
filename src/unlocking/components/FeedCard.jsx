@@ -1,13 +1,16 @@
 import { FavoriteOutlined, Report } from "@mui/icons-material"
 import { Avatar, Card, CardActions, CardContent, CardHeader, Grid, IconButton, Tooltip, Typography } from "@mui/material"
 
-export const FeedCard = ({displayName,answer,photoURL}) => {
+export const FeedCard = ({displayName,answer,photoURL, timestamp}) => {
+	const time = new Date(timestamp)
+	const date = time.toString().split(' ').slice(0,5).join(' ')
+
   return (
 	<Card>
 		<CardHeader
 			sx={{fontSize: '16px'}}
 			title={displayName}
-			subheader={'September 14, 2023'}
+			subheader={date}
 			action={
 				<Tooltip title={'Reportar'}>
 					<IconButton aria-label="report">

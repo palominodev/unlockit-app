@@ -8,6 +8,5 @@ export const getAllAnswer = async(id) => {
 		allAnswers.push(doc.data())
 	})
 
-	console.log(allAnswers)
 	return allAnswers
 }
