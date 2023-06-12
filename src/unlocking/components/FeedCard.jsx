@@ -1,10 +1,27 @@
-import { FavoriteOutlined, Report } from "@mui/icons-material"
+import { Favorite, FavoriteBorderOutlined, Report } from "@mui/icons-material"
 import { Avatar, Card, CardActions, CardContent, CardHeader, Grid, IconButton, Tooltip, Typography } from "@mui/material"
+import { useState } from "react"
+import { useDispatch } from "react-redux"
+import { startSendDisliked, startSendLike } from "../../store/unlocking/thunks"
 
-export const FeedCard = ({displayName,answer,photoURL, timestamp}) => {
+export const FeedCard = ({displayName,answer,photoURL, timestamp, likes,uid}) => {
 	const time = new Date(timestamp)
 	const date = time.toString().split(' ').slice(0,5).join(' ')
+	const dispatch = useDispatch()
 
+	const [like, setLike] = useState(likes)
+	const [isLiked, setIsLiked] = useState(false)
+
+	const onSendLike = () => {
+		setIsLiked(!isLiked)
+		if (isLiked) {
+			setLike(like - 1)
+			dispatch(startSendDisliked({uid,likes}))
+		} else {
+			setLike(like + 1)
+			dispatch(startSendLike({uid,likes}))
+		}
+	}
   return (
 	<Card>
 		<CardHeader
@@ -30,11 +47,15 @@ export const FeedCard = ({displayName,answer,photoURL, timestamp}) => {
 				container>
 				<Grid item>
 				<Tooltip title={'Like'}>
-				<IconButton>
-					<FavoriteOutlined />
+				<IconButton onClick={onSendLike} >
+					{
+						!isLiked 
+							? <FavoriteBorderOutlined /> 
+							: <Favorite sx={{color: 'red'}} />
+					}
 					</IconButton>
 				</Tooltip>
-					<Typography variant="body2">13 Likes</Typography>
+					<Typography variant="body2">{like} Likes</Typography>
 				</Grid>
 				<Grid item>
 					<Avatar alt={displayName} src={photoURL} />

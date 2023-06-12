@@ -2,6 +2,8 @@ import { checkingSendAnswer } from "../../utils/checkingSendAnswer"
 import { getAllAnswer } from "../../utils/getAllAnswer"
 import { getAnswer } from "../../utils/getAnswer"
 import { getQuestion } from "../../utils/getQuestion"
+import { sendingLike } from "../../utils/sendingLike"
+import { sendingDisliked } from "../../utils/sendingDisliked"
 import { setAnswer } from "../../utils/setAnswer"
 import { setAllAnswers, setQuestion, setStateAnswer, setStatus } from "./unlockingSlice"
 
@@ -58,5 +60,22 @@ export const startGetAllAnswers = () => {
 		if(!question) return 
 		const allAnswers = await getAllAnswer(question.id)
 		dispatch(setAllAnswers({allAnswers}))
+	}
+}
+
+export const startSendLike = ({uid,likes}) => {
+	return async (dispatch,getState) => {
+		const {question} = getState().unlocking
+		console.log(question.id)
+
+		await sendingLike({id:question.id, uid,likes})
+	}
+}
+
+export const startSendDisliked = ({uid, likes}) => {
+	return async (dispatch,getState) => {
+		const {question} = getState().unlocking
+		console.log(question.id)
+		await sendingDisliked({id:question.id, uid,likes})
 	}
 }

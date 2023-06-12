@@ -11,6 +11,7 @@ export const setAnswer = async({uid,id,answer,displayName, photoURL}) => {
 		answer,
 		displayName,
 		photoURL,
-		timestamp: date.getTime()
+		timestamp: date.getTime(),
+		likes: []
 	});
 }
