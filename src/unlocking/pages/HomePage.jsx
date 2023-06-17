@@ -25,11 +25,11 @@ export const HomePage = () => {
 	return (
 		<TemplateBar>
 			<Grid marginTop={8} container>
-				<Grid item xs={2}></Grid>
-				<Grid padding={1} item xs={6}>
+				<Grid item xs={0} md={2} ></Grid>
+				<Grid order={{xs:2,md:1}} padding={1} item xs={12} md={6}>
 					<FeedContent />
 				</Grid>
-				<Grid sx={{ position: 'relative' }} padding={1} item xs={4}>
+				<Grid position={'relative'} order={{xs:1,md:2}} padding={1} item xs={12} md={3} >
 					{
 						(status === UNLOCKING_STATUS.LOADING)
 						? <CheckingSend />
@@ -37,7 +37,6 @@ export const HomePage = () => {
 							? <MessageSent />
 							: <SendAnserw />
 					}
-					
 				</Grid>
 			</Grid>
 		</TemplateBar>
