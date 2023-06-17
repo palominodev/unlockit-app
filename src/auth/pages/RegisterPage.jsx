@@ -1,10 +1,12 @@
 import { Google } from "@mui/icons-material"
-import { Button, Divider, Grid, TextField, Typography } from "@mui/material"
+import { Button, Divider, Grid, Link, TextField, Typography } from "@mui/material"
+import { Link as LinkRoute, useNavigate } from 'react-router-dom'
 import { startCreateUserWithEmailPassword, startGoogleSignIn } from "../../store/auth/thunks"
 import { useDispatch } from "react-redux"
 import { useForm } from '../../hooks/useForm'
 
 export const RegisterPage = () => {
+	const navigate = useNavigate()
 	const { email, displayName, password, onInputChange, formState } = useForm({
 		email: '',
 		displayName: '',
@@ -75,6 +77,7 @@ export const RegisterPage = () => {
 								Register by Google
 							</Button>
 						</Grid>
+						<Button onClick={()=> navigate('/auth/login')}>Tengo una cuenta</Button>
 					</Grid>
 				</Grid>
 			</form>

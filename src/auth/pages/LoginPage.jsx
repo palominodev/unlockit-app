@@ -1,10 +1,12 @@
 import { Google } from "@mui/icons-material"
-import { Button, Grid, TextField, Typography } from "@mui/material"
+import { Button, Grid, Link, TextField, Typography } from "@mui/material"
 import { useDispatch } from "react-redux"
 import { startGoogleSignIn, startLoginWithEmailPassword } from "../../store/auth/thunks"
 import { useForm } from "../../hooks/useForm"
+import { Link as LinkRoute, useNavigate } from 'react-router-dom'
 
 export const LoginPage = () => {
+	const navigate = useNavigate()
 	const {email, password, onInputChange, formState} = useForm({
 		email: '',
 		password: ''
@@ -69,6 +71,7 @@ export const LoginPage = () => {
 								Google
 							</Button>
 						</Grid>
+						<Button onClick={()=> navigate('/auth/register')} >Crear cuenta</Button>
 					</Grid>
 				</Grid>
 			</form>
